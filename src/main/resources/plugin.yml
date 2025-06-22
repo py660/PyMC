@@ -1,0 +1,29 @@
+name: PyMC
+version: '1.0-SNAPSHOT'
+main: py660.pyMC.PyMC
+api-version: '1.21'
+commands:
+  gemupgrade:
+    description: Modify a gem
+    usage: /gemupgrade
+    permission: minecraft.command.op
+  gimmegem:
+    description: gimme dat gem
+    usage: /gimmegem <Gem ID>
+    permission: minecraft.command.op
+  gimmesecondary:
+    description: gimme dat secondary
+    usage: /gimmesecondary <Secondary ID>
+    permission: minecraft.command.op
+  gimmerandomizer:
+    description: gimme dat randomizer
+    usage: /gimmerandomizer
+    permission: minecraft.command.op
+  gimmeweakupgrader:
+    description: gimme dat weak upgrader
+    usage: /gimmeweakupgrader
+    permission: minecraft.command.op
+  gimmeupgrader:
+    description: gimme dat upgrader
+    usage: /gimmeupgrade
+    permission: minecraft.command.op

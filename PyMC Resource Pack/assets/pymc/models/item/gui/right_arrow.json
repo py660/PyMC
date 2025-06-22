@@ -1,0 +1,6 @@
+{
+  "parent": "pymc:item/gui/template",
+  "textures": {
+    "1": "pymc:item/gui/right_arrow"
+  }
+}
