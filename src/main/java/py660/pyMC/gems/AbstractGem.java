@@ -35,13 +35,13 @@ public abstract class AbstractGem {
         }
     }
 
-    public static Integer MAX_LEVEL = 4;
+    public static int MAX_LEVEL = 4;
 
-    public static ItemStack buildGem(GemType type, Integer level) {
+    public static ItemStack buildGem(GemType type, int level) {
         return buildGem(type, level, AbstractSecondary.SecondaryType.DEFAULT);
     }
 
-    public static ItemStack buildGem(GemType type, Integer level, AbstractSecondary.SecondaryType secondary) {
+    public static ItemStack buildGem(GemType type, int level, AbstractSecondary.SecondaryType secondary) {
         ItemStack gem = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
         ItemMeta meta = gem.getItemMeta();
         assert meta != null;
@@ -71,7 +71,7 @@ public abstract class AbstractGem {
         return EnumUtils.getEnum(AbstractSecondary.SecondaryType.class, gem.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "secondary"), PersistentDataType.STRING));
     }
 
-    public static Integer getLevel(ItemStack gem){
+    public static int getLevel(ItemStack gem){
         return gem.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "level"), PersistentDataType.INTEGER);
     }
 

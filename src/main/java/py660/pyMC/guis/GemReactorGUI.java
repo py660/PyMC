@@ -1,5 +1,6 @@
 package py660.pyMC.guis;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -63,7 +64,7 @@ public class GemReactorGUI implements Listener {
         player.openInventory(inventory);
     }
 
-    private void clickAction(Integer slot, Player player) {
+    private void clickAction(int slot, Player player) {
         if (slot != 3) return;
         if (inventory.getItem(4) != null) return;
         if (inventory.getItem(0) == null || inventory.getItem(2) == null) return;
@@ -78,13 +79,15 @@ public class GemReactorGUI implements Listener {
             return;
         }
         assert gem != null;
-        Integer level = AbstractGem.getLevel(gem);
+        int level = AbstractGem.getLevel(gem);
         AbstractGem.GemType type = AbstractGem.getType(gem);
 
         assert substrate != null;
         if (AbstractSubstrate.isSubstrate(substrate)) {
             if (AbstractSubstrate.getType(substrate) == AbstractSubstrate.SubstrateType.RANDOMIZER) {
-                newGem = AbstractGem.buildGem(AbstractGem.GemType.values()[new SecureRandom().nextInt(AbstractGem.GemType.values().length)], 1, AbstractGem.getSecondary(gem));
+                int i = new SecureRandom().nextInt(AbstractGem.GemType.values().length - 1);
+                if (i >= ArrayUtils.indexOf(AbstractGem.GemType.values(), AbstractGem.getType(gem))) i--;
+                newGem = AbstractGem.buildGem(AbstractGem.GemType.values()[i], 1, AbstractGem.getSecondary(gem));
             } else {
                 if (AbstractSubstrate.getType(substrate) == AbstractSubstrate.SubstrateType.WEAK_UPGRADER && level >= 2) {
                     return;
@@ -141,7 +144,7 @@ public class GemReactorGUI implements Listener {
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
         if (Objects.equals(event.getInventory(), inventory) && event.getPlayer() instanceof Player player){
-            for (Integer slot : userSlots) {
+            for (int slot : userSlots) {
                 if (inventory.getItem(slot) == null) {
                     continue;
                 }
