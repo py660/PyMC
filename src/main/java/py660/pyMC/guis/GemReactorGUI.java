@@ -77,20 +77,23 @@ public class GemReactorGUI implements Listener {
         } else {
             return;
         }
+        assert gem != null;
         Integer level = AbstractGem.getLevel(gem);
+        AbstractGem.GemType type = AbstractGem.getType(gem);
 
+        assert substrate != null;
         if (AbstractSubstrate.isSubstrate(substrate)) {
             if (AbstractSubstrate.getType(substrate) == AbstractSubstrate.SubstrateType.RANDOMIZER) {
                 newGem = AbstractGem.buildGem(AbstractGem.GemType.values()[new SecureRandom().nextInt(AbstractGem.GemType.values().length)], 1, AbstractGem.getSecondary(gem));
             } else {
-                if (AbstractSubstrate.getType(substrate) == AbstractSubstrate.SubstrateType.WEAK_UPGRADER && AbstractGem.getLevel(gem) >= 2) {
+                if (AbstractSubstrate.getType(substrate) == AbstractSubstrate.SubstrateType.WEAK_UPGRADER && level >= 2) {
                     return;
                 }
-                if (AbstractGem.getLevel(gem) >= AbstractGem.MAX_LEVEL) return;
-                newGem = AbstractGem.buildGem(AbstractGem.getType(gem), AbstractGem.getLevel(gem) + 1, AbstractGem.getSecondary(gem));
+                if (level >= AbstractGem.MAX_LEVEL) return;
+                newGem = AbstractGem.buildGem(type, level + 1, AbstractGem.getSecondary(gem));
             }
         } else if (AbstractSecondary.isSecondary(substrate)) {
-            newGem = AbstractGem.buildGem(AbstractGem.getType(gem), AbstractGem.getLevel(gem), AbstractSecondary.getType(substrate));
+            newGem = AbstractGem.buildGem(type, level, AbstractSecondary.getType(substrate));
         } else {
             return;
         }
