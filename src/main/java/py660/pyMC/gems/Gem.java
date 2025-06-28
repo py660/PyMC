@@ -95,6 +95,7 @@ public final class Gem extends ItemStack {
     }
 
     private void setSelfMeta() {
+        //System.out.println(level);
         ItemMeta meta = this.getItemMeta();
         assert meta != null;
         meta.setDisplayName(gemType.title);

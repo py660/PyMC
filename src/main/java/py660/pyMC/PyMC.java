@@ -15,15 +15,17 @@ import java.util.Objects;
 
 public final class PyMC extends JavaPlugin {
     private static PyMC instance;
-
     private static DataHandler dataHandler;
+    private volatile static TimerHUDThread timerHUDThread;
 
     public static PyMC getInstance() {
         return instance;
     }
-
     public static DataHandler getDataHandler() {
         return dataHandler;
+    }
+    public static TimerHUDThread getTimerHUDThread() {
+        return timerHUDThread;
     }
 
     @Override
@@ -40,7 +42,7 @@ public final class PyMC extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("gimmerandomizer")).setExecutor(new GimmeRandomizerCommand());
         Objects.requireNonNull(this.getCommand("gimmeweakupgrader")).setExecutor(new GimmeWeakUpgraderCommand());
         Objects.requireNonNull(this.getCommand("gimmeupgrader")).setExecutor(new GimmeUpgraderCommand());
-        TimerHUDThread timerHUDThread = new TimerHUDThread();
+        timerHUDThread = new TimerHUDThread();
         timerHUDThread.start();
 
 
@@ -82,7 +84,8 @@ public final class PyMC extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("PyMC Plugin Disabled");
+        timerHUDThread.interrupt();
+        timerHUDThread = null;
         // Plugin shutdown logic
     }
 }
