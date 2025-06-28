@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import py660.pyMC.gems.Gem;
+import py660.pyMC.items.Gem;
 
 public final class GimmeGemCommand implements CommandExecutor {
     @Override

@@ -1,4 +1,4 @@
-package py660.pyMC.substrates;
+package py660.pyMC.items;
 
 import org.apache.commons.lang3.EnumUtils;
 import org.bukkit.ChatColor;

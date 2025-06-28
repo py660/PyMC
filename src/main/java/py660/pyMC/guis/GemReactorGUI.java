@@ -11,9 +11,9 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import py660.pyMC.PyMC;
-import py660.pyMC.gems.Gem;
-import py660.pyMC.secondaries.AbstractSecondary;
-import py660.pyMC.substrates.AbstractSubstrate;
+import py660.pyMC.items.Gem;
+import py660.pyMC.items.AbstractSecondary;
+import py660.pyMC.items.AbstractSubstrate;
 
 import java.util.*;
 

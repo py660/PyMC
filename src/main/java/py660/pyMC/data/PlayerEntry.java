@@ -1,10 +1,10 @@
-package py660.pyMC.datahandlers;
+package py660.pyMC.data;
 
 import org.apache.commons.lang3.EnumUtils;
-import py660.pyMC.gems.Gem;
-import py660.pyMC.secondaries.AbstractSecondary;
+import py660.pyMC.items.Gem;
+import py660.pyMC.items.AbstractSecondary;
 
-public class PlayerEntry {
+public final class PlayerEntry {
     private String type;
     private int level;
     private String secondary;

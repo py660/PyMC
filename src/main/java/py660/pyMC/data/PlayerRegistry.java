@@ -1,12 +1,12 @@
-package py660.pyMC.datahandlers;
+package py660.pyMC.data;
 
 import org.bukkit.entity.Player;
-import py660.pyMC.gems.Gem;
+import py660.pyMC.items.Gem;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 
-public class PlayerRegistry {
+public final class PlayerRegistry {
     private HashMap<String, PlayerEntry> players;
 
     public PlayerRegistry() {

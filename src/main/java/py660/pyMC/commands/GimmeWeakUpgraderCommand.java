@@ -5,7 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import py660.pyMC.substrates.AbstractSubstrate;
+import py660.pyMC.items.AbstractSubstrate;
 
 public final class GimmeWeakUpgraderCommand implements CommandExecutor {
     @Override

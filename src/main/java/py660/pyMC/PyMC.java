@@ -9,7 +9,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import py660.pyMC.commands.*;
-import py660.pyMC.datahandlers.DataHandler;
+import py660.pyMC.data.DataHandler;
 
 import java.util.Objects;
 

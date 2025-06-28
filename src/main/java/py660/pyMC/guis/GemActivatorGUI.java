@@ -15,7 +15,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import py660.pyMC.PyMC;
-import py660.pyMC.gems.Gem;
+import py660.pyMC.items.Gem;
 
 import java.util.HashMap;
 import java.util.Map;

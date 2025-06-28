@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.scheduler.BukkitRunnable;
-import py660.pyMC.gems.Gem;
+import py660.pyMC.items.Gem;
 
 import java.time.Duration;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package py660.pyMC.gems;
+package py660.pyMC.items;
 
 import org.apache.commons.lang3.EnumUtils;
 import org.bukkit.ChatColor;
@@ -11,7 +11,6 @@ import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import py660.pyMC.PyMC;
 import py660.pyMC.RomanNumeral;
-import py660.pyMC.secondaries.AbstractSecondary;
 
 import java.util.*;
 
@@ -34,7 +33,7 @@ public final class Gem extends ItemStack {
         }
     }
 
-    public static List<GemType> obtainableTypes = List.of(
+    public static final List<GemType> obtainableTypes = List.of(
             GemType.BEACON,
             GemType.LAVA_RAIN,
             GemType.SPACETIME,

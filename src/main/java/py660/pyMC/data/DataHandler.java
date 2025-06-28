@@ -1,4 +1,4 @@
-package py660.pyMC.datahandlers;
+package py660.pyMC.data;
 
 import org.bukkit.entity.Player;
 import org.yaml.snakeyaml.LoaderOptions;
@@ -6,7 +6,7 @@ import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor;
 import org.yaml.snakeyaml.inspector.TagInspector;
 import py660.pyMC.PyMC;
-import py660.pyMC.gems.Gem;
+import py660.pyMC.items.Gem;
 
 import java.io.*;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public final class DataHandler {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        PlayerRegistry loadedRegistry = yaml.loadAs(inputStream, py660.pyMC.datahandlers.PlayerRegistry.class);
+        PlayerRegistry loadedRegistry = yaml.loadAs(inputStream, py660.pyMC.data.PlayerRegistry.class);
         if (loadedRegistry != null) { // if the file is empty, then it's null for some reason
             playerRegistry = loadedRegistry;
         } else {
