@@ -7,6 +7,10 @@ commands:
     description: Modify a gem
     usage: /gemupgrade
     permission: minecraft.command.op
+  gemactivate:
+    description: Activate a gem (in the player vault)
+    usage: /gemactivate
+    permission: minecraft.command.op
   gimmegem:
     description: gimme dat gem
     usage: /gimmegem <Gem ID>

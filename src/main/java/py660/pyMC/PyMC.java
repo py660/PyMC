@@ -9,13 +9,14 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import py660.pyMC.commands.*;
+import py660.pyMC.datahandlers.DataHandler;
 
 import java.util.Objects;
 
 public final class PyMC extends JavaPlugin {
     private static PyMC instance;
 
-    private static final DataHandler dataHandler = new DataHandler("", "", "");
+    private static DataHandler dataHandler;
 
     public static PyMC getInstance() {
         return instance;
@@ -29,8 +30,11 @@ public final class PyMC extends JavaPlugin {
     public void onEnable() {
         instance = this;
 
+        dataHandler = new DataHandler();
+
         getServer().getPluginManager().registerEvents(new PyListener(), this);
         Objects.requireNonNull(this.getCommand("gemupgrade")).setExecutor(new GemUpgradeCommand());
+        Objects.requireNonNull(this.getCommand("gemactivate")).setExecutor(new GemActivateCommand());
         Objects.requireNonNull(this.getCommand("gimmegem")).setExecutor(new GimmeGemCommand());
         Objects.requireNonNull(this.getCommand("gimmesecondary")).setExecutor(new GimmeSecondaryCommand());
         Objects.requireNonNull(this.getCommand("gimmerandomizer")).setExecutor(new GimmeRandomizerCommand());

@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 public class RomanNumeral {
 
-    private final static TreeMap<Integer, String> map = new TreeMap<Integer, String>();
+    private final static TreeMap<Integer, String> map = new TreeMap<>();
 
     static {
 
@@ -24,12 +24,21 @@ public class RomanNumeral {
 
     }
 
-    public final static String toRoman(int number) {
+    public static String toRoman(int number) {
+        if (number == 0) {
+            return "∅";
+        } else if (number < 0) {
+            number *= -1;
+            return "-" + toRomanPositive(number);
+        }
+        return toRomanPositive(number);
+    }
+    private static String toRomanPositive(int number) {
         int l =  map.floorKey(number);
         if ( number == l ) {
             return map.get(number);
         }
-        return map.get(l) + toRoman(number-l);
+        return map.get(l) + toRomanPositive(number-l);
     }
 
 }

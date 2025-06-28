@@ -13,7 +13,7 @@ import py660.pyMC.PyMC;
 import java.util.Arrays;
 import java.util.Objects;
 
-public abstract class AbstractSecondary {
+public final class AbstractSecondary {
     public enum SecondaryType {
         DEFAULT("None"),
         BEACON("Beacon"),
@@ -21,13 +21,15 @@ public abstract class AbstractSecondary {
         EXPLODING_KITTENS("Exploding Kittens");
 
         private final String title;
-        private SecondaryType(String title) {
+        SecondaryType(String title) {
             this.title = title;
         }
         public String getTitle() {
             return title;
         }
     }
+
+    private AbstractSecondary() {}
 
     public static ItemStack buildSecondary(SecondaryType type) {
         ItemStack gem = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
