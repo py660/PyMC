@@ -1,6 +1,7 @@
 package py660.pyMC.data;
 
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import org.yaml.snakeyaml.LoaderOptions;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor;
@@ -9,10 +10,10 @@ import py660.pyMC.PyMC;
 import py660.pyMC.items.Gem;
 
 import java.io.*;
-import java.util.HashMap;
 
 public final class DataHandler {
-    public HashMap<Player, Long> combatPlayers = new HashMap<>();
+    //public ConcurrentHashMap<Player, Long> combatPlayers = new ConcurrentHashMap<>();
+    //public ConcurrentHashMap<Player, Long> cooldownPlayers = new ConcurrentHashMap<>();
 
     private final Yaml yaml;
 
@@ -58,7 +59,7 @@ public final class DataHandler {
         dump();
     }
 
-    public Gem getPlayerGem(Player player) {
+    public @NotNull Gem getPlayerGem(Player player) {
         Gem gem = playerRegistry.getPlayer(player);
         if (gem == null) {
             gem = new Gem();

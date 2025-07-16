@@ -9,6 +9,7 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import py660.pyMC.commands.*;
+import py660.pyMC.data.CooldownHandler;
 import py660.pyMC.data.DataHandler;
 
 import java.util.Objects;
@@ -16,6 +17,7 @@ import java.util.Objects;
 public final class PyMC extends JavaPlugin {
     private static PyMC instance;
     private static DataHandler dataHandler;
+    private static CooldownHandler cooldownHandler;
     private volatile static TimerHUDThread timerHUDThread;
 
     public static PyMC getInstance() {
@@ -24,6 +26,9 @@ public final class PyMC extends JavaPlugin {
     public static DataHandler getDataHandler() {
         return dataHandler;
     }
+    public static CooldownHandler getCooldownHandler() {
+        return cooldownHandler;
+    }
     public static TimerHUDThread getTimerHUDThread() {
         return timerHUDThread;
     }
@@ -31,8 +36,9 @@ public final class PyMC extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
         dataHandler = new DataHandler();
+        cooldownHandler = new CooldownHandler();
+        timerHUDThread = new TimerHUDThread();
 
         getServer().getPluginManager().registerEvents(new PyListener(), this);
         Objects.requireNonNull(this.getCommand("gemupgrade")).setExecutor(new GemUpgradeCommand());
@@ -42,8 +48,15 @@ public final class PyMC extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("gimmerandomizer")).setExecutor(new GimmeRandomizerCommand());
         Objects.requireNonNull(this.getCommand("gimmeweakupgrader")).setExecutor(new GimmeWeakUpgraderCommand());
         Objects.requireNonNull(this.getCommand("gimmeupgrader")).setExecutor(new GimmeUpgraderCommand());
-        timerHUDThread = new TimerHUDThread();
+        Objects.requireNonNull(this.getCommand("setcooldown")).setExecutor(new SetCooldownCommand());
+
+
         timerHUDThread.start();
+
+
+
+
+
 
 
 

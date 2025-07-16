@@ -37,8 +37,8 @@ public final class PyListener implements Listener {
         Entity causingEntity = event.getDamageSource().getCausingEntity();
         Entity resultEntity = event.getEntity();
         if (causingEntity instanceof Player causingPlayer && resultEntity instanceof Player resultPlayer){
-            PyMC.getDataHandler().combatPlayers.put(resultPlayer, System.currentTimeMillis());
-            PyMC.getDataHandler().combatPlayers.put(causingPlayer, System.currentTimeMillis());
+            PyMC.getCooldownHandler().addCombatPlayer(resultPlayer);
+            PyMC.getCooldownHandler().addCombatPlayer(causingPlayer);
         }
     }
 
@@ -48,7 +48,7 @@ public final class PyListener implements Listener {
         Player causingPlayer = player.getKiller();
 
         // combat logging
-        PyMC.getDataHandler().combatPlayers.remove(player);
+        PyMC.getCooldownHandler().removeCombatPlayer(player);
 
         // gem levelling
         Gem gem = PyMC.getDataHandler().getPlayerGem(player);
@@ -78,14 +78,14 @@ public final class PyListener implements Listener {
     }
     @EventHandler
     public void onPlayerKick(PlayerKickEvent event){
-        PyMC.getDataHandler().combatPlayers.remove(event.getPlayer());
+        PyMC.getCooldownHandler().removeCombatPlayer(event.getPlayer());
     }
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
         Player player = event.getPlayer();
-        if (PyMC.getDataHandler().combatPlayers.containsKey(player)){
-            PyMC.getDataHandler().combatPlayers.remove(player);
+        if (PyMC.getCooldownHandler().getCombatTimeLeft(player) > 0){
+            PyMC.getCooldownHandler().removeCombatPlayer(player);
             player.setHealth(0);
             player.ban(ChatColor.DARK_RED + "Player left while in combat." + ChatColor.RED + "\nTemp-ban expires in 30 seconds." + ChatColor.RESET, Duration.ofSeconds(30), null, false);
             Bukkit.broadcastMessage(ChatColor.RED + player.getName() + " left while in combat!" + ChatColor.RESET);

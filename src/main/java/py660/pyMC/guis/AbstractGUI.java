@@ -83,7 +83,7 @@ public abstract class AbstractGUI implements Listener {
                 if (inventory.getItem(slot) == null) {
                     continue;
                 }
-                HashMap<Integer, ItemStack> nope = player.getInventory().addItem(inventory.getItem(slot));
+                Map<Integer, ItemStack> nope = player.getInventory().addItem(inventory.getItem(slot));
                 for (Map.Entry<Integer, ItemStack> entry : nope.entrySet()) {
                     player.getWorld().dropItemNaturally(player.getLocation(), entry.getValue());
                 }

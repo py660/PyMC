@@ -4,13 +4,14 @@ import org.bukkit.entity.Player;
 import py660.pyMC.items.Gem;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class PlayerRegistry {
-    private HashMap<String, PlayerEntry> players;
+    private Map<String, PlayerEntry> players;
 
     public PlayerRegistry() {
-        players = new HashMap<>();
+        players = new ConcurrentHashMap<>();
     }
 
     @Nullable
@@ -30,10 +31,10 @@ public final class PlayerRegistry {
 
     //JavaBean stuff, please don't touch!
 
-    public HashMap<String, PlayerEntry> getPlayers() {
+    public Map<String, PlayerEntry> getPlayers() {
         return players;
     }
-    public void setPlayers(HashMap<String, PlayerEntry> players) {
+    public void setPlayers(Map<String, PlayerEntry> players) {
         this.players = players;
     }
 

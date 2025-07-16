@@ -17,7 +17,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import py660.pyMC.PyMC;
 import py660.pyMC.items.Gem;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
@@ -83,7 +82,7 @@ public final class GemActivatorGUI extends AbstractGUI implements Listener {
             } else {
                 // non-genuine; reject and drop
                 player.sendMessage(ChatColor.RED + "Beware: Gem Missing & Invalid item in activator core.");
-                HashMap<Integer, ItemStack> nope = player.getInventory().addItem(item);
+                Map<Integer, ItemStack> nope = player.getInventory().addItem(item);
                 for (Map.Entry<Integer, ItemStack> entry : nope.entrySet()) {
                     player.getWorld().dropItemNaturally(player.getLocation(), entry.getValue());
                 }

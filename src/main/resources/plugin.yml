@@ -31,3 +31,7 @@ commands:
     description: gimme dat upgrader
     usage: /gimmeupgrade
     permission: minecraft.command.op
+  setcooldown:
+    description: set dat cooldown
+    usage: /setcooldown <player> <type> <time in msec or 0/1>
+    permission: minecraft.command.op
