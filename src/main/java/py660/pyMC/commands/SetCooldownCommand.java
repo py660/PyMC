@@ -15,7 +15,7 @@ public final class SetCooldownCommand implements CommandExecutor {
                 return false;
             }
             Player targetPlayer = Bukkit.getPlayer(args[0]);
-            Long length = Long.valueOf(args[2]);
+            long length = Long.parseLong(args[2]);
             switch (args[1].toLowerCase()) {
                 case "gem":
                     PyMC.getCooldownHandler().setGemCooldownPlayer(targetPlayer, length);
