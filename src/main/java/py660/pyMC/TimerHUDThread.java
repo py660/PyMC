@@ -12,7 +12,7 @@ import java.util.Set;
 
 public final class TimerHUDThread extends Thread {
     public void run() {
-        while(true) {
+        while (true) {
             try {
                 if (PyMC.getTimerHUDThread() != Thread.currentThread()) {
                     return;
@@ -25,7 +25,7 @@ public final class TimerHUDThread extends Thread {
                 activePlayers.addAll(PyMC.getCooldownHandler().getCombatPlayers());
                 activePlayers.addAll(PyMC.getCooldownHandler().getGemCooldownPlayers());
                 activePlayers.addAll(PyMC.getCooldownHandler().getSecondaryCooldownPlayers());
-                System.out.println(activePlayers.toArray().length);
+                //System.out.println(activePlayers.toArray().length);
 
                 for (Player player : activePlayers) {
                     String hud = "";

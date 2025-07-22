@@ -11,11 +11,14 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import py660.pyMC.PyMC;
-import py660.pyMC.items.Gem;
 import py660.pyMC.items.AbstractSecondary;
 import py660.pyMC.items.AbstractSubstrate;
+import py660.pyMC.items.Gem;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public final class GemReactorGUI extends AbstractGUI implements Listener {
 
@@ -31,7 +34,7 @@ public final class GemReactorGUI extends AbstractGUI implements Listener {
         rightArrowMeta.setMaxStackSize(1);
         rightArrowMeta.setItemModel(new NamespacedKey(PyMC.getInstance(), "gui/right_arrow"));
         rightArrowMeta.setHideTooltip(true);
-        rightArrow.setItemMeta(rightArrowMeta) ;
+        rightArrow.setItemMeta(rightArrowMeta);
 
         ItemStack plusSign = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
         ItemMeta plusSignMeta = plusSign.getItemMeta();

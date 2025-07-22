@@ -15,24 +15,6 @@ import py660.pyMC.RomanNumeral;
 import java.util.*;
 
 public final class Gem extends ItemStack {
-    public enum GemType {
-        DB_MISSING_GEM("DB_MISSING_GEM"),
-        BEACON("Beacon Gem"),
-        LAVA_RAIN("Lava Rain Gem"),
-        SPACETIME("Spacetime Continuum™ Gem"),
-        ENDER("Ender Gem"),
-        CHICKEN_JOCKEY("Chicken Jockey Gem"),
-        RICK_ASTLEY("Rick Astley Gem");
-
-        private final String title;
-        GemType(String title) {
-            this.title = title;
-        }
-        public String getTitle() {
-            return title;
-        }
-    }
-
     public static final List<GemType> obtainableTypes = List.of(
             GemType.BEACON,
             GemType.LAVA_RAIN,
@@ -41,28 +23,20 @@ public final class Gem extends ItemStack {
             GemType.CHICKEN_JOCKEY,
             GemType.RICK_ASTLEY
     );
-
+    private final static Material MATERIAL = Material.PHANTOM_MEMBRANE;
     public static int MAX_LEVEL = 4;
     public static int MIN_LEVEL = -5;
-
-    private final static Material MATERIAL = Material.PHANTOM_MEMBRANE;
-
     private final GemType gemType;
     private final int level;
     private final AbstractSecondary.SecondaryType secondary;
-
-    public static boolean isGem(ItemStack gem) {
-        return Objects.equals(gem.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "category"), PersistentDataType.STRING), "gem");
-    }
-
     public Gem(ItemStack gem) {
         super(MATERIAL, 1);
         if (!isGem(gem)) {
             throw new RuntimeException("bro did not check if the item was a gem before creating the gem object (LOL) xD");
         }
-        PersistentDataContainer pdc = gem.getItemMeta().getPersistentDataContainer();
+        PersistentDataContainer pdc = Objects.requireNonNull(gem.getItemMeta()).getPersistentDataContainer();
         gemType = EnumUtils.getEnum(GemType.class, pdc.get(new NamespacedKey(PyMC.getInstance(), "type"), PersistentDataType.STRING));
-        level = pdc.get(new NamespacedKey(PyMC.getInstance(), "level"), PersistentDataType.INTEGER);
+        level = Objects.requireNonNull(pdc.get(new NamespacedKey(PyMC.getInstance(), "level"), PersistentDataType.INTEGER));
         secondary = EnumUtils.getEnum(AbstractSecondary.SecondaryType.class, pdc.get(new NamespacedKey(PyMC.getInstance(), "secondary"), PersistentDataType.STRING));
         setSelfMeta();
     }
@@ -93,6 +67,10 @@ public final class Gem extends ItemStack {
         setSelfMeta();
     }
 
+    public static boolean isGem(ItemStack gem) {
+        return Objects.equals(Objects.requireNonNull(gem.getItemMeta()).getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "category"), PersistentDataType.STRING), "gem");
+    }
+
     private void setSelfMeta() {
         //System.out.println(level);
         ItemMeta meta = this.getItemMeta();
@@ -120,5 +98,25 @@ public final class Gem extends ItemStack {
 
     public AbstractSecondary.SecondaryType getSecondary() {
         return secondary;
+    }
+
+    public enum GemType {
+        DB_MISSING_GEM("DB_MISSING_GEM"),
+        BEACON("Beacon Gem"),
+        LAVA_RAIN("Lava Rain Gem"),
+        SPACETIME("Spacetime Continuum™ Gem"),
+        ENDER("Ender Gem"),
+        CHICKEN_JOCKEY("Chicken Jockey Gem"),
+        RICK_ASTLEY("Rick Astley Gem");
+
+        private final String title;
+
+        GemType(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
     }
 }

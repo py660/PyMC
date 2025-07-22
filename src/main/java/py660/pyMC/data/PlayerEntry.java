@@ -1,8 +1,8 @@
 package py660.pyMC.data;
 
 import org.apache.commons.lang3.EnumUtils;
-import py660.pyMC.items.Gem;
 import py660.pyMC.items.AbstractSecondary;
+import py660.pyMC.items.Gem;
 
 public final class PlayerEntry {
     private String type;
@@ -29,18 +29,23 @@ public final class PlayerEntry {
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }
+
     public int getLevel() {
         return level;
     }
+
     public void setLevel(int level) {
         this.level = level;
     }
+
     public String getSecondary() {
         return secondary;
     }
+
     public void setSecondary(String secondary) {
         this.secondary = secondary;
     }

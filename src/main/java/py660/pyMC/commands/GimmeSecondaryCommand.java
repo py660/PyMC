@@ -12,7 +12,7 @@ public final class GimmeSecondaryCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            if (args.length != 1){
+            if (args.length != 1) {
                 return false;
             }
             AbstractSecondary.SecondaryType secondaryType = EnumUtils.getEnumIgnoreCase(AbstractSecondary.SecondaryType.class, args[0]);

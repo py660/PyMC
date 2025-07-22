@@ -14,7 +14,7 @@ public final class GemActivateCommand implements CommandExecutor {
     // This method is called, when somebody uses our command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player player){
+        if (sender instanceof Player player) {
             GemActivatorGUI gemActivatorGUI = new GemActivatorGUI();
             getServer().getPluginManager().registerEvents(gemActivatorGUI, PyMC.getInstance());
             gemActivatorGUI.openInventory(player);

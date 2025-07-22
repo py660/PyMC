@@ -12,7 +12,10 @@ import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
 public abstract class AbstractGUI implements Listener {
     protected Inventory inventory;
@@ -61,11 +64,11 @@ public abstract class AbstractGUI implements Listener {
     // must be public, spigot bug
     @EventHandler
     public void onInventoryDrag(InventoryDragEvent event) {
-        if (Objects.equals(event.getInventory(), inventory)){
+        if (Objects.equals(event.getInventory(), inventory)) {
             HumanEntity whoClicked = event.getWhoClicked();
             if (whoClicked instanceof Player player) {
                 Set<Integer> rawSlots = event.getRawSlots();
-                if (!Collections.disjoint(rawSlots, staticSlots)){
+                if (!Collections.disjoint(rawSlots, staticSlots)) {
                     event.setCancelled(true);
                 }
                 dragAction(rawSlots, player, event);
@@ -78,7 +81,7 @@ public abstract class AbstractGUI implements Listener {
     // public bc spigot bug
     @EventHandler
     public void onInventoryClose(InventoryCloseEvent event) {
-        if (Objects.equals(event.getInventory(), inventory) && event.getPlayer() instanceof Player player){
+        if (Objects.equals(event.getInventory(), inventory) && event.getPlayer() instanceof Player player) {
             for (int slot : returnSlots) {
                 if (inventory.getItem(slot) == null) {
                     continue;

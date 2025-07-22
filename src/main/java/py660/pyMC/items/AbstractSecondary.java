@@ -10,26 +10,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import py660.pyMC.PyMC;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public final class AbstractSecondary {
-    public enum SecondaryType {
-        DEFAULT("None"),
-        BEACON("Beacon"),
-        BOOMBOX("Boombox"),
-        EXPLODING_KITTENS("Exploding Kittens");
-
-        private final String title;
-        SecondaryType(String title) {
-            this.title = title;
-        }
-        public String getTitle() {
-            return title;
-        }
+    private AbstractSecondary() {
     }
-
-    private AbstractSecondary() {}
 
     public static ItemStack buildSecondary(SecondaryType type) {
         ItemStack gem = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
@@ -38,7 +24,7 @@ public final class AbstractSecondary {
         meta.setDisplayName(type.title);
         meta.setRarity(ItemRarity.RARE);
 
-        meta.setLore(Arrays.asList(ChatColor.BLUE + "Secondary" + ChatColor.RESET));
+        meta.setLore(List.of(ChatColor.BLUE + "Secondary" + ChatColor.RESET));
         meta.setMaxStackSize(1);
         meta.setItemModel(new NamespacedKey(PyMC.getInstance(), "secondaries/" + type.name()));
         meta.setEnchantmentGlintOverride(true);
@@ -48,11 +34,28 @@ public final class AbstractSecondary {
         return gem;
     }
 
-    public static boolean isSecondary(ItemStack secondary){
-        return Objects.equals(secondary.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "category"), PersistentDataType.STRING), "secondary");
+    public static boolean isSecondary(ItemStack secondary) {
+        return Objects.equals(Objects.requireNonNull(secondary.getItemMeta()).getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "category"), PersistentDataType.STRING), "secondary");
     }
 
     public static SecondaryType getType(ItemStack secondary) {
-        return EnumUtils.getEnum(SecondaryType.class, secondary.getItemMeta().getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "type"), PersistentDataType.STRING));
+        return EnumUtils.getEnum(SecondaryType.class, Objects.requireNonNull(secondary.getItemMeta()).getPersistentDataContainer().get(new NamespacedKey(PyMC.getInstance(), "type"), PersistentDataType.STRING));
+    }
+
+    public enum SecondaryType {
+        DEFAULT("None"),
+        BEACON("Beacon"),
+        BOOMBOX("Boombox"),
+        EXPLODING_KITTENS("Exploding Kittens");
+
+        private final String title;
+
+        SecondaryType(String title) {
+            this.title = title;
+        }
+
+        public String getTitle() {
+            return title;
+        }
     }
 }

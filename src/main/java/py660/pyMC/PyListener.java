@@ -33,17 +33,17 @@ public final class PyListener implements Listener {
     }
 
     @EventHandler
-    public void onEntityDamageByEntity(EntityDamageByEntityEvent event){
-        Entity causingEntity = event.getDamageSource().getCausingEntity();
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        Entity causingEntity = event.getDamager(); //getDamageSource().getCausingEntity();
         Entity resultEntity = event.getEntity();
-        if (causingEntity instanceof Player causingPlayer && resultEntity instanceof Player resultPlayer){
+        if (causingEntity instanceof Player causingPlayer && resultEntity instanceof Player resultPlayer) {
             PyMC.getCooldownHandler().addCombatPlayer(resultPlayer);
             PyMC.getCooldownHandler().addCombatPlayer(causingPlayer);
         }
     }
 
     @EventHandler
-    public void onPlayerDeath(PlayerDeathEvent event){
+    public void onPlayerDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         Player causingPlayer = player.getKiller();
 
@@ -63,7 +63,7 @@ public final class PyListener implements Listener {
             }.runTaskLater(PyMC.getInstance(), 1);
             // don't kick immediately, otherwise double inventory for some reason?!?
         } else {
-            PyMC.getDataHandler().setPlayerGem(player, new Gem(gem.getGemType(), gem.getLevel()-1, gem.getSecondary()));
+            PyMC.getDataHandler().setPlayerGem(player, new Gem(gem.getGemType(), gem.getLevel() - 1, gem.getSecondary()));
         }
 
         // drop player head
@@ -76,15 +76,16 @@ public final class PyListener implements Listener {
         head.setItemMeta(meta);
         player.getWorld().dropItem(player.getLocation(), head);
     }
+
     @EventHandler
-    public void onPlayerKick(PlayerKickEvent event){
+    public void onPlayerKick(PlayerKickEvent event) {
         PyMC.getCooldownHandler().removeCombatPlayer(event.getPlayer());
     }
 
     @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event){
+    public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        if (PyMC.getCooldownHandler().getCombatTimeLeft(player) > 0){
+        if (PyMC.getCooldownHandler().getCombatTimeLeft(player) > 0) {
             PyMC.getCooldownHandler().removeCombatPlayer(player);
             player.setHealth(0);
             player.ban(ChatColor.DARK_RED + "Player left while in combat." + ChatColor.RED + "\nTemp-ban expires in 30 seconds." + ChatColor.RESET, Duration.ofSeconds(30), null, false);
@@ -93,6 +94,6 @@ public final class PyListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event){
+    public void onPlayerInteract(PlayerInteractEvent event) {
     }
 }

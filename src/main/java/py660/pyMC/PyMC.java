@@ -23,12 +23,15 @@ public final class PyMC extends JavaPlugin {
     public static PyMC getInstance() {
         return instance;
     }
+
     public static DataHandler getDataHandler() {
         return dataHandler;
     }
+
     public static CooldownHandler getCooldownHandler() {
         return cooldownHandler;
     }
+
     public static TimerHUDThread getTimerHUDThread() {
         return timerHUDThread;
     }
@@ -54,17 +57,10 @@ public final class PyMC extends JavaPlugin {
         timerHUDThread.start();
 
 
-
-
-
-
-
-
-
         // Luca's crafting stuff
 
         ItemStack gemSwitcher = new ItemStack(Material.SEA_PICKLE, 1);
-        ItemMeta gemSwitcherMeta = gemSwitcher.getItemMeta();
+        ItemMeta gemSwitcherMeta = Objects.requireNonNull(gemSwitcher.getItemMeta());
         gemSwitcherMeta.setDisplayName(ChatColor.GREEN + "Gem Switcher");
         // Add code for use
         gemSwitcher.setItemMeta(gemSwitcherMeta);
@@ -79,7 +75,7 @@ public final class PyMC extends JavaPlugin {
         Bukkit.addRecipe(gemSwitcherRecipe);
 
         ItemStack gemUpgrader = new ItemStack(Material.WAXED_EXPOSED_CUT_COPPER_STAIRS, 1);
-        ItemMeta gemUpgraderMeta = gemUpgrader.getItemMeta();
+        ItemMeta gemUpgraderMeta = Objects.requireNonNull(gemUpgrader.getItemMeta());
         gemUpgraderMeta.setDisplayName(ChatColor.GREEN + "Gem Upgrader");
         // Add code for use
         gemUpgrader.setItemMeta(gemUpgraderMeta);

@@ -34,6 +34,7 @@ public final class PlayerRegistry {
     public Map<String, PlayerEntry> getPlayers() {
         return players;
     }
+
     public void setPlayers(Map<String, PlayerEntry> players) {
         this.players = players;
     }

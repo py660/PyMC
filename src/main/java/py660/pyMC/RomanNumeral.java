@@ -33,12 +33,13 @@ public class RomanNumeral {
         }
         return toRomanPositive(number);
     }
+
     private static String toRomanPositive(int number) {
-        int l =  map.floorKey(number);
-        if ( number == l ) {
+        int l = map.floorKey(number);
+        if (number == l) {
             return map.get(number);
         }
-        return map.get(l) + toRomanPositive(number-l);
+        return map.get(l) + toRomanPositive(number - l);
     }
 
 }
