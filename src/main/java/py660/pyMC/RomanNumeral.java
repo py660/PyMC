@@ -29,17 +29,17 @@ public class RomanNumeral {
             return "∅";
         } else if (number < 0) {
             number *= -1;
-            return "-" + toRomanPositive(number);
+            return "-" + toRomanButPositiveNumbersOnly(number);
         }
-        return toRomanPositive(number);
+        return toRomanButPositiveNumbersOnly(number);
     }
 
-    private static String toRomanPositive(int number) {
+    private static String toRomanButPositiveNumbersOnly(int number) {
         int l = map.floorKey(number);
         if (number == l) {
             return map.get(number);
         }
-        return map.get(l) + toRomanPositive(number - l);
+        return map.get(l) + toRomanButPositiveNumbersOnly(number - l);
     }
 
 }

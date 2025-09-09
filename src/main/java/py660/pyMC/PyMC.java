@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import py660.pyMC.commands.*;
 import py660.pyMC.data.CooldownHandler;
 import py660.pyMC.data.DataHandler;
+import py660.pyMC.async.*;
 
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public final class PyMC extends JavaPlugin {
     private static PyMC instance;
     private static DataHandler dataHandler;
     private static CooldownHandler cooldownHandler;
-    private volatile static TimerHUDThread timerHUDThread;
+    private volatile static CooldownHUDThread cooldownHUDThread;
 
     public static PyMC getInstance() {
         return instance;
@@ -32,8 +33,8 @@ public final class PyMC extends JavaPlugin {
         return cooldownHandler;
     }
 
-    public static TimerHUDThread getTimerHUDThread() {
-        return timerHUDThread;
+    public static CooldownHUDThread getTimerHUDThread() {
+        return cooldownHUDThread;
     }
 
     @Override
@@ -41,9 +42,13 @@ public final class PyMC extends JavaPlugin {
         instance = this;
         dataHandler = new DataHandler();
         cooldownHandler = new CooldownHandler();
-        timerHUDThread = new TimerHUDThread();
+        cooldownHUDThread = new CooldownHUDThread();
 
-        getServer().getPluginManager().registerEvents(new PyListener(), this);
+        getServer().getPluginManager().registerEvents(new GemDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new ActionListener(), this);
+        getServer().getPluginManager().registerEvents(new OffhandGemEquipListener(), this);
+        getServer().getPluginManager().registerEvents(new CombatLogListener(), this);
+
         Objects.requireNonNull(this.getCommand("gemupgrade")).setExecutor(new GemUpgradeCommand());
         Objects.requireNonNull(this.getCommand("gemactivate")).setExecutor(new GemActivateCommand());
         Objects.requireNonNull(this.getCommand("gimmegem")).setExecutor(new GimmeGemCommand());
@@ -54,7 +59,7 @@ public final class PyMC extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("setcooldown")).setExecutor(new SetCooldownCommand());
 
 
-        timerHUDThread.start();
+        cooldownHUDThread.start();
 
 
         // Luca's crafting stuff
@@ -93,8 +98,8 @@ public final class PyMC extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        timerHUDThread.interrupt();
-        timerHUDThread = null;
+        cooldownHUDThread.interrupt();
+        cooldownHUDThread = null;
         // Plugin shutdown logic
     }
 }

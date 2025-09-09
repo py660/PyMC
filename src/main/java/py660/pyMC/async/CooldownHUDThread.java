@@ -1,16 +1,17 @@
-package py660.pyMC;
+package py660.pyMC.async;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import py660.pyMC.PyMC;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class TimerHUDThread extends Thread {
+public final class CooldownHUDThread extends Thread {
     public void run() {
         while (true) {
             try {

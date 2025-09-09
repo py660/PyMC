@@ -14,7 +14,7 @@ import py660.pyMC.RomanNumeral;
 
 import java.util.*;
 
-public final class Gem extends ItemStack {
+public class Gem extends ItemStack {
     public static final List<GemType> obtainableTypes = List.of(
             GemType.BEACON,
             GemType.LAVA_RAIN,
@@ -104,7 +104,7 @@ public final class Gem extends ItemStack {
         DB_MISSING_GEM("DB_MISSING_GEM"),
         BEACON("Beacon Gem"),
         LAVA_RAIN("Lava Rain Gem"),
-        SPACETIME("Spacetime Continuum™ Gem"),
+        SPACETIME("Quantum Gem"),
         ENDER("Ender Gem"),
         CHICKEN_JOCKEY("Chicken Jockey Gem"),
         RICK_ASTLEY("Rick Astley Gem");

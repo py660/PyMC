@@ -60,7 +60,7 @@ public final class GemActivatorGUI extends AbstractGUI implements Listener {
 
     @Override
     protected void dragAction(Set<Integer> slots, Player player, InventoryDragEvent event) {
-        // later on, check for "binding"/unremovable gems
+        // TODO: check for "binding"/unremovable gems
         if (slots.contains(2) && inventory.getItem(2) != null && !Gem.isGem(inventory.getItem(2))) {
             event.setCancelled(true);
         }

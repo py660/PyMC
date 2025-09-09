@@ -13,7 +13,7 @@ import py660.pyMC.PyMC;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class AbstractSubstrate {
+public final class AbstractSubstrate {
     public static ItemStack buildSubstrate(SubstrateType type) {
         ItemStack gem = new ItemStack(Material.PHANTOM_MEMBRANE, 1);
         ItemMeta meta = gem.getItemMeta();
